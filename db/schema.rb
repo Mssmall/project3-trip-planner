@@ -10,15 +10,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119045045) do
+ActiveRecord::Schema.define(version: 20180120004309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "budgets", force: :cascade do |t|
+    t.integer "cost"
+    t.text "budget_item"
+    t.integer "user_id"
+    t.integer "itinerary_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.text "name"
+    t.text "language"
+    t.text "attraction"
+    t.string "link"
+    t.text "recommendation"
+    t.integer "country_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cities_lists", id: false, force: :cascade do |t|
+    t.integer "city_id"
+    t.integer "list_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.text "name"
+    t.text "currency"
+    t.text "known_for"
+    t.string "link"
+    t.text "recommendation"
+    t.text "region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "countries_lists", id: false, force: :cascade do |t|
+    t.integer "country_id"
+    t.integer "list_id"
+  end
+
+  create_table "itineraries", force: :cascade do |t|
+    t.string "day"
+    t.string "date"
+    t.string "entry"
+    t.text "destination"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "lists", force: :cascade do |t|
     t.text "name"
     t.text "item"
     t.integer "checkbox"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.text "name"
+    t.float "latitude"
+    t.float "longitude"
+    t.boolean "visited"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

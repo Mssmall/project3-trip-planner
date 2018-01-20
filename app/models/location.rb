@@ -1,18 +1,16 @@
 # == Schema Information
 #
-# Table name: lists
+# Table name: locations
 #
 #  id         :integer          not null, primary key
 #  name       :text
-#  item       :text
-#  checkbox   :integer
+#  latitude   :float
+#  longitude  :float
+#  visited    :boolean
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class List < ApplicationRecord
-  belongs_to :user, :optional => true
-  has_and_belongs_to_many :cities
-  has_and_belongs_to_many :countries
+class Location < ApplicationRecord
 end
