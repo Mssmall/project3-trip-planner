@@ -66,9 +66,25 @@
 #                PATCH  /users/:id(.:format)            users#update
 #                PUT    /users/:id(.:format)            users#update
 #                DELETE /users/:id(.:format)            users#destroy
-# 
+#
 
 Rails.application.routes.draw do
+
+  get 'days/index'
+
+  get 'days/new'
+
+  get 'days/edit'
+
+  get 'days/show'
+
+  get 'tasks/index'
+
+  get 'tasks/new'
+
+  get 'tasks/edit'
+
+  get 'tasks/show'
 
   root :to => 'pages#home'
 
@@ -80,5 +96,11 @@ Rails.application.routes.draw do
   resources :locations
   resources :notes
   resources :users
+  resources :tasks
+  resources :days
+
+  get '/login' => 'session#new'
+  get '/login' => 'session#create'
+  get '/login' => 'session#destroy'
 
 end

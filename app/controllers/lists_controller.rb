@@ -8,7 +8,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    # @list = List.find params[:id]
+    @list = List.find params[:id]
   end
 
   def create
@@ -27,9 +27,9 @@ class ListsController < ApplicationController
   def destroy
 
   end
-end
 
-private
-def list_params
-  params.require(:list).permit(:name, :item)
+  private
+  def list_params
+    params.require(:list).permit(:name, :user_id)
+  end
 end

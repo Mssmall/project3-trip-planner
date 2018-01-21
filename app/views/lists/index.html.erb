@@ -3,22 +3,29 @@
 <div class="list-board">
   <%= form_for List.new do |l| %>
       <fieldset>
-        <ul>
+
           <!-- <li> -->
         <%= l.label :name %>
         <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do' %>
+        <%= l.submit "Add name" %>
       <!-- </li> -->
-      <li>
-        <%= l.text_field :item, :required => true, :placeholder => 'Book Paris hotel' %>
-        <%= l.submit "Add item" %>
-      </li>
-    </ul>
-      </fieldset>
-    <% end %>
+    </fieldset>
+  <% end %>
 
-<% @lists.each do |list| %>
-<ul>
-  <h3><%= list.name %></h3>
-  <li><%= list.item %></li>
-</ul>
-<% end %>
+    <% @lists.each do |list| %>
+    <ul>
+      <h3><%= list.name %></h3>
+    </ul>
+
+    <%= form_for Task.new do |t| %>
+      <%= hidden_field_tag 'task[list_id]', list.id %>
+      <%= t.text_area :name %>
+      <%= t.submit "Add task" %>
+      <% end %>
+
+      <% list.tasks.each do |tasklists| %>
+        <ul>
+          <li><%= tasklists.name %></li>
+        </ul>
+      <% end %>
+    <% end %>
