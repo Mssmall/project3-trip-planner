@@ -12,5 +12,10 @@
 
 class User < ApplicationRecord
   has_many :notes
-  has_many :lists 
+  has_many :lists
+  has_many :itineraries
+  has_many :locations
+  has_many :budgets
+  has_many :tasks, :through => :lists
+  has_many :days, :through => :itineraries
 end

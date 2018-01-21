@@ -14,5 +14,6 @@
 #
 
 class Country < ApplicationRecord
-  has_and_belongs_to_many :countries
+  has_many :cities
+  has_and_belongs_to_many :lists
 end
