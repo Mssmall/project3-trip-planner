@@ -66,25 +66,28 @@
 #                PATCH  /users/:id(.:format)            users#update
 #                PUT    /users/:id(.:format)            users#update
 #                DELETE /users/:id(.:format)            users#destroy
+#          tasks GET    /tasks(.:format)                tasks#index
+#                POST   /tasks(.:format)                tasks#create
+#       new_task GET    /tasks/new(.:format)            tasks#new
+#      edit_task GET    /tasks/:id/edit(.:format)       tasks#edit
+#           task GET    /tasks/:id(.:format)            tasks#show
+#                PATCH  /tasks/:id(.:format)            tasks#update
+#                PUT    /tasks/:id(.:format)            tasks#update
+#                DELETE /tasks/:id(.:format)            tasks#destroy
+#           days GET    /days(.:format)                 days#index
+#                POST   /days(.:format)                 days#create
+#        new_day GET    /days/new(.:format)             days#new
+#       edit_day GET    /days/:id/edit(.:format)        days#edit
+#            day GET    /days/:id(.:format)             days#show
+#                PATCH  /days/:id(.:format)             days#update
+#                PUT    /days/:id(.:format)             days#update
+#                DELETE /days/:id(.:format)             days#destroy
+#          login GET    /login(.:format)                sessions#new
+#                GET    /login(.:format)                sessions#create
+#                GET    /login(.:format)                sessions#destroy
 #
 
 Rails.application.routes.draw do
-
-  get 'days/index'
-
-  get 'days/new'
-
-  get 'days/edit'
-
-  get 'days/show'
-
-  get 'tasks/index'
-
-  get 'tasks/new'
-
-  get 'tasks/edit'
-
-  get 'tasks/show'
 
   root :to => 'pages#home'
 
@@ -99,8 +102,8 @@ Rails.application.routes.draw do
   resources :tasks
   resources :days
 
-  get '/login' => 'session#new'
-  get '/login' => 'session#create'
-  get '/login' => 'session#destroy'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  delete '/login' => 'sessions#destroy'
 
 end

@@ -12,6 +12,7 @@ Task.destroy_all
 t1 = Task.create(:name => 'Book flights')
 
 
+
 User.destroy_all
 u1 = User.create(:username => 'Blueforever', :email => 'cfc@live.ft', :password => 'chicken', :password_confirmation => 'chicken')
 

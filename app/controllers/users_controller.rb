@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :check_if_logged_in, :only => [:edit]
+  before_action :check_if_logged_in, :only => [:edit]
 
   def index
     @users = User.all
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     user = User.find params[:id]
     user.update user_params
     user.save
-    redirect_to user_pathredirect_to root_path unless @current_user.id == params[:id].to_i
+    redirect_to user_path redirect_to root_path unless @current_user.id == params[:id].to_i
     @user = User.find params[:id]
   end
 

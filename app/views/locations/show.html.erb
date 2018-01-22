@@ -1,0 +1,70 @@
+<div id="mapcontainer">
+  <div id="floating-panel">
+      <input onclick="clearMarkers();" type=button value="Hide Markers">
+      <input onclick="showMarkers();" type=button value="Show All Markers">
+      <input onclick="deleteMarkers();" type=button value="Delete Markers">
+    </div>
+  <div id="map"></div>
+</div>
+<script>
+
+  let map;
+  let myLatLng;
+  let marker;
+  let markers = []; // TODO: populate this with markers
+  // let markers = <%= @locations.to_json %>
+  // TODO: loop through the markers to display them
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: {lat: 30, lng: 0 },
+      zoom: 2,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    map.addListener('click', function(e) {
+      let marker = placeMarkerAndPanTo(e.latLng, map);
+      var infowindow = new google.maps.InfoWindow({
+        content: 'some message'
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    });
+  };
+
+  function placeMarkerAndPanTo(latLng, map) {
+    let marker = new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+    map.panTo(latLng);
+    markers.push(marker);
+    // TODO: send marker data to server via AJAX
+    // $.post('/locations', { ... } )
+    return marker;
+  }
+
+  function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+
+  function clearMarkers() {
+    setMapOnAll(null);
+  }
+
+  // Shows any markers currently in the array.
+  function showMarkers() {
+    setMapOnAll(map);
+  }
+
+  // Deletes all markers in the array by removing references to them.
+  function deleteMarkers() {
+    clearMarkers();
+    markers = [];
+  }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWU51sQzS9yUoJMfeXtXIyu5MG4uSJB9o&callback=initMap" async defer></script>
