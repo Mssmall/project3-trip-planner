@@ -20,11 +20,11 @@
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 0;
   line-height: 3em;
   backface-visibility: hidden;
-  background-color: none;
-  margin: 20px;
+  background-color: blue;
+  margin-bottom: 20px;
 }
 .pagecontainer {
   height: 531px;

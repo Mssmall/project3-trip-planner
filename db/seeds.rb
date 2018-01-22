@@ -1,15 +1,22 @@
 Country.destroy_all
 c1 = Country.create(:name => 'England', :currency => 'Pound', :region => 'United Kingdom')
+c2 = Country.create(:name => 'France', :currency => 'Euro', :region => 'Europe')
+c3 = Country.create(:name => 'USA', :currency => 'US Dollar', :region => 'United States')
+c4 = Country.create(:name => 'South Korea', :currency => 'Won', :region => 'Asia')
 
 City.destroy_all
 a1 = City.create(:name => 'Paris', :language => 'French', :attraction => 'Eiffel Tower, Arc de Triomphe')
 a2 = City.create(:name => 'London', :language => 'English', :attraction => 'Big Ben, Buckingham Palace')
+a3 = City.create(:name => 'New York', :language => 'English', :attraction => 'Empire State Building, Chrysler Building')
+a4 = City.create(:name => 'Seoul', :language => 'Korean', :attraction => 'Gyeongbokgung, N Seoul Tower')
 
 List.destroy_all
 l1 = List.create(:name => 'Europe to do')
+l2 = List.create(:name => "Asia to do")
 
 Task.destroy_all
 t1 = Task.create(:name => 'Book flights')
+t2 = Task.create(:name => 'Research vaccinations')
 
 Itinerary.destroy_all
 i1 = Itinerary.create(:itinerary_name => 'Europe' )
@@ -23,6 +30,10 @@ User.destroy_all
 u1 = User.create(:username => 'Blueforever', :email => 'cfc@live.ft', :password => 'chicken', :password_confirmation => 'chicken')
 
 c1.cities << a2
+c2.cities << a1
+c3.cities << a3
+c4.cities << a4
 l1.tasks << t1
+l2.tasks << t2
 i2.days << d1
 i1.days << d2
