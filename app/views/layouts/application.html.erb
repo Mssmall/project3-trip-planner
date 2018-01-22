@@ -9,22 +9,20 @@
   </head>
 
   <body>
-
+  <div id="topnav">
     <% if @current_user.present? %>
         <% if @current_user.admin? %>
           <%  link_to "All users", users_path %>
         <% end %>
-        <%= link_to "My Profile", user_path(@current_user) %>
-        <div class="navright">
-        <%= link_to "Sign Out #{@current_user.email}", login_path, :method => 'delete' %>
-        </div>
-      <% else %>
-        <%= link_to 'Sign Up', new_user_path %>
-        <%= link_to 'Sign In', login_path %>
-      <% end %>
-
-
-
-    <%= yield %>
+      <%= link_to "My Profile", user_path(@current_user) %>
+      <div class="navright">
+      <%= link_to "Sign Out #{@current_user.email}", login_path, :method => 'delete' %>
+      </div>
+    <% else %>
+      <%= link_to 'Sign Up', new_user_path %>
+      <%= link_to 'Sign In', login_path %>
+    <% end %>
+  </div>
+    <div class="pagecontainer"><%= yield %></div>
   </body>
 </html>

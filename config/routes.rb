@@ -83,9 +83,9 @@
 #                PUT    /days/:id(.:format)             days#update
 #                DELETE /days/:id(.:format)             days#destroy
 #          login GET    /login(.:format)                sessions#new
-#                GET    /login(.:format)                sessions#create
-#                GET    /login(.:format)                sessions#destroy
-#
+#                POST   /login(.:format)                sessions#create
+#                DELETE /login(.:format)                sessions#destroy
+# 
 
 Rails.application.routes.draw do
 

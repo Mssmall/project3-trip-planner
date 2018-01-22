@@ -2,30 +2,40 @@
 
 <div class="list-board">
   <%= form_for List.new do |l| %>
-      <fieldset>
-
-          <!-- <li> -->
+    <fieldset>
+      <div class="form-group">
         <%= l.label :name %>
-        <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do' %>
-        <%= l.submit "Add name" %>
-      <!-- </li> -->
+        <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
+      </div>
     </fieldset>
   <% end %>
 
-    <% @lists.each do |list| %>
-    <ul>
-      <h3><%= list.name %></h3>
-    </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <% @lists.each do |list| %>
+        <div class="form-group">
+          <%= form_for Task.new do |t| %>
+            <%= hidden_field_tag 'task[list_id]', list.id %>
+            <%= t.text_area :name, class: "form-control" %>
+            <%= t.submit "Add task", class: "btn btn-default add-task-btn" %>
+          <% end %>
+        </div>
 
-    <%= form_for Task.new do |t| %>
-      <%= hidden_field_tag 'task[list_id]', list.id %>
-      <%= t.text_area :name %>
-      <%= t.submit "Add task" %>
-      <% end %>
-
-      <% list.tasks.each do |tasklists| %>
         <ul>
-          <li><%= tasklists.name %></li>
+          <li><h3><%= list.name %></h3></li>
         </ul>
       <% end %>
-    <% end %>
+    </div>
+    <div class="col-md-8">
+      <% @lists.each do |list| %>
+        <h3><%= list.name %></h3>
+        <% list.tasks.each do |tasklists| %>
+          <ul>
+            <li><%= tasklists.name %></li>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

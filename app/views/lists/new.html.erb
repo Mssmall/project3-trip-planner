@@ -2,16 +2,21 @@
 
 <div class="list-board">
   <%= form_for @list do |l| %>
-      <fieldset>
-        <ul>
-          <!-- <li> -->
-        <%= l.label :name %>
-        <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do' %>
-      <!-- </li> -->
-      <li>
-        <%= l.text_field :item, :required => true, :placeholder => 'Book Paris hotel' %>
-        <%= l.submit "Add item" %>
-      </li>
-    </ul>
-      </fieldset>
-    <% end %>
+    <fieldset>
+      <ul>
+        <div class="form-group">
+          <li>
+          <%= l.label :name %>
+          <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
+          </li>
+        </div>
+        <div class="form-group">
+          <li>
+            <%= l.text_field :item, :required => true, :placeholder => 'Book Paris hotel', :class => "form-control" %>
+            <%= l.submit "Add item" %>
+          </li>
+        </div>
+      </ul>
+    </fieldset>
+  <% end %>
+</div>

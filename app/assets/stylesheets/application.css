@@ -14,6 +14,26 @@
  *= require_self
  */
 
+#topnav {
+  position: fixed;
+  /* border-bottom: 2px solid black; */
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  line-height: 3em;
+  backface-visibility: hidden;
+  background-color: none;
+  margin: 20px;
+}
+.pagecontainer {
+  height: 531px;
+  width: 950px;
+  border: 1px solid black;
+  margin: 0 auto;
+  padding: 20px
+}
+
  #map-container {
    height: 600px;
    border-radius: 16px 16px;
@@ -24,7 +44,7 @@
    border-width: 7px;
  }
  #map {
-   height: 580px;
+   height: 500px;
    width: 100%;
  }
 

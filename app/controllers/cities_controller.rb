@@ -10,11 +10,11 @@ class CitiesController < ApplicationController
   def show
     @city = City.find params[:id]
 
-    country_url = "https://api.thebasetrip.com/v2/countries/:#{params[:country]}"
-    info = HTTParty.get country_url;
-    @capital_city = info['capital'][0]['name']
-    @region = info['location'][0]['region']
-    @language = info['native'][0]['languages']['name']
+    # country_url = "https://api.thebasetrip.com/v2/countries/:#{params[:country]}"
+    # info = HTTParty.get country_url;
+    # @capital_city = info['capital'][0]['name']
+    # @region = info['location'][0]['region']
+    # @language = info['native'][0]['languages']['name']
 
   end
 
