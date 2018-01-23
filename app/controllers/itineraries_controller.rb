@@ -1,6 +1,6 @@
 class ItinerariesController < ApplicationController
   def index
-    @itineraries = Itinerary.all
+    @itineraries = @current_user.itineraries
   end
 
   def new
@@ -12,11 +12,13 @@ class ItinerariesController < ApplicationController
   end
 
   def create
-
+    params[:itinerary][:user_id] = @current_user.id
+    itinerary = Itinerary.create itinerary_params
+    redirect_to itineraries_path
   end
 
   def edit
-    @itinerary = Itinerary.find params[:id]
+    # @itinerary = Itinerary.find params[:id]
   end
 
   def update
@@ -25,5 +27,10 @@ class ItinerariesController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+  def itinerary_params
+    params.require(:itinerary).permit(:itinerary_name, :user_id)
   end
 end

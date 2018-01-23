@@ -1,11 +1,12 @@
 <h1>Your Itineraries</h1>
 
+<!-- FIRST SECTION -->
 <div class="itinerary-board">
   <div class="list-form">
   <%= form_for Itinerary.new do |it| %>
     <fieldset>
-      <div class="form-group">
-        <%= it.label :itinerary_name %>
+      <div class="it-form-group">
+        <%= it.label :name_your_itinerary %>
         <%= it.text_field :itinerary_name, :required => true, :placeholder => 'Europe 2018', :class => "form-control" %>
       </div>
   </div>
@@ -19,38 +20,46 @@
     <ul>
       <li><h3 class="clicky" data-lname="<%= itinerary.itinerary_name %>"><%= itinerary.itinerary_name %></h3></li>
     </ul>
-  <% end %>
+    <% end %>
   </div>
 
+<!-- SECOND SECTION -->
   <div class="col-md-5" id="daysec">
     <% @itineraries.each do |itinerary| %>
-      <div class="info-<%= itinerary.itinerary_name %> infobox hidey">  <!-- NEW -->
-        <h3><%= itinerary.itinerary_name %></h3>
-
-      <div class="form-group">
+      <div class="info-<%= itinerary.itinerary_name %> infobox hidey">
+        <!-- <h3><%= itinerary.itinerary_name %></h3> -->
+      <div class="li-form-group">
         <%= form_for Day.new do |day| %>
-        <%= hidden_field_tag 'day[itinerary_id]', itinerary.id %>
-        <%= day.text_area :date, :required => true, :placeholder => '03.09.18', class: "form-control" %>
-        <%= day.text_area :destination, :required => false, :placeholder => 'Tokyo', class: "form-control" %>
-        <%= day.text_area :entry, :required => false, :placeholder => 'Arrive in Tokyo. Check in to hotel. Walk around city. Eat ramen.', class: "form-control" %>
-        <%= day.submit "Add entry", class: "btn btn-default add-task-btn" %>
+          <%= hidden_field_tag 'day[itinerary_id]', itinerary.id %>
+          <%= day.text_area :date, :required => true, :placeholder => '03.09.18', class: "form-control" %>
+          <%= day.text_area :destination, :required => false, :placeholder => 'Tokyo', class: "form-control" %>
+          <%= day.text_area :entry, :required => false, :placeholder => 'Arrive in Tokyo. Check in to hotel. Walk around city. Eat ramen.', class: "form-control" %>
+          <%= day.submit "Add entry", class: "btn btn-default add-task-btn" %>
         <% end %>
+
+        <% @itineraries.each do |it| %>
+          <% it.days.each do |day| %>
+            <h3 class="clicky2" data-lname2="<%= day.date %>"><%= day.date %></h3>
+          <% end %>
+        <% end %>
+        
+    <% end %>
       </div>
-      <% @itineraries.each do |it| %>
-        <% it.days.each do |day| %>
-        <h3><%= day.date %></h3>
-        <% end %>
-      <% end %>
-  </div>
+      </div>
 
-    <!-- <h3><%= itinerary.itinerary_name %></h3> -->
-    <!-- <% end %> -->
+
 
   </div>
-  <div class="col-md-5" id="detailssec">
+    </div>
+  </div>
+
+  <div class="col-md-4" id="detailssec">
+
+
 
   <% @itineraries.each do |it| %>
-    <h3><%= it.itinerary_name %></h3>
+      <div class="dinfo-<%= it.itinerary_name %> infobox hidey2">
+    <!-- <h3><%= it.itinerary_name %></h3> -->
     <% it.days.each do |itdays| %>
     <ul>
       <li><%= itdays.date %></li>
@@ -58,7 +67,6 @@
       <li><%= itdays.entry %></li>
     </ul>
     <% end %>
+    </div>
   <% end %>
-</div>
-</div>
 </div>

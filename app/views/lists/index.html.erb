@@ -4,7 +4,7 @@
   <div class="list-form">
  <%= form_for List.new do |l| %>
    <fieldset>
-     <div class="form-group">
+     <div class="li-form-group">
        <%= l.label :name_your_list %>
        <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
      </div>
@@ -28,7 +28,7 @@
        <div class="info-<%= list.name %> infobox hidey">  <!-- NEW -->
          <h3><%= list.name %></h3>
 
-         <div class="form-group">
+         <div class="li-form-group">
            <%= form_for Task.new do |t| %>
              <%= hidden_field_tag 'task[list_id]', list.id %>
              <%= t.text_area :name, class: "form-control" %>

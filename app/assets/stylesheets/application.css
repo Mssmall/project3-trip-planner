@@ -61,8 +61,12 @@
   padding-left: 10px;
 }
 
-.form-group {
+.li-form-group {
   width: 300px;
+}
+
+.it-form-group {
+  width: 200px;
 }
 
 .list-form {
