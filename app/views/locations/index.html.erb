@@ -9,27 +9,36 @@
 <script>
 
   let map;
+  let geocoder;
   let myLatLng;
   let marker;
-  let markers = []; // TODO: populate this with markers
-  // let markers = <%= @locations.to_json %>
-  // TODO: loop through the markers to display them
+  let markers = <%== @current_user.locations.to_json %>;
 
   function initMap() {
+    geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById("map"), {
       center: {lat: 30, lng: 0 },
       zoom: 2,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    map.addListener('click', function(e) {
-      let marker = placeMarkerAndPanTo(e.latLng, map);
+    for (let i = 0; i < markers.length; i++) {
+      const m = markers[i];
+      const latLng = new google.maps.LatLng(m.latitude, m.longitude);
+      let marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+      });
       var infowindow = new google.maps.InfoWindow({
-        content: 'some message'
+        content: m.country
       });
       marker.addListener('click', function() {
         infowindow.open(map, marker);
       });
+    }
+
+    map.addListener('click', function(e) {
+      placeMarkerAndPanTo(e.latLng, map);
     });
   };
 
@@ -40,24 +49,28 @@
     });
     map.panTo(latLng);
     markers.push(marker);
-    // TODO: send marker data to server via AJAX
-    $.ajax({
-        type: "POST",
-        async: true,
-        url: '/locations',
-        data:  { 'latLng' },
-        dataType: "html",
-        // contentType: "application/json; charset=utf-8",
-        success: function (msg)
-                { alert('success') },
-        error: function (err)
-        { alert(err.responseText)}
-    });
-    // $.post('/locations', { 'latLng' } )
-    //
-    //         'postID' : $('#postID').val(),
-    //              'userID' : $(('#userID').val()
-    //     },
+    geocoder.geocode({'location': latLng}, function (results, status) {
+      console.log( results ); // TODO: look at other results
+      const country = results[ results.length - 1 ].formatted_address;
+
+      var infowindow = new google.maps.InfoWindow({
+        content: country + '<button>delete</button>'
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+
+      $.ajax({
+          type: "POST",
+          url: '/locations',
+          data:  {
+            latitude: latLng.lat(),
+            longitude: latLng.lng(),
+            country: country
+          },
+      });
+    })
+
     return marker;
   }
 
