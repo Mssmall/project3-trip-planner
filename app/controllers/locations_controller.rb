@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  protect_from_forgery :except => [:create]
+  protect_from_forgery :except => [:create, :update, :destroy]
   before_action :check_if_logged_in
   def index
 
@@ -27,10 +27,14 @@ class LocationsController < ApplicationController
   end
 
   def update
-
+    location = Location.find params[:id]
+    location.update :visited => params[:visited]
+    render :json => location
   end
 
   def destroy
-
+    location = Location.find params[:id]
+    location.destroy
+    render :json => {status: 'okay'}
   end
 end

@@ -1,41 +1,48 @@
 <h1>Lists</h1>
 
 <div class="list-board">
-  <%= form_for List.new do |l| %>
-    <fieldset>
-      <div class="form-group">
-        <%= l.label :name %>
-        <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
-      </div>
-    </fieldset>
-  <% end %>
+  <div class="list-form">
+ <%= form_for List.new do |l| %>
+   <fieldset>
+     <div class="form-group">
+       <%= l.label :name %>
+       <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
+     </div>
+  </div>
+   </fieldset>
+ <% end %>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <% @lists.each do |list| %>
-        <div class="form-group">
-          <%= form_for Task.new do |t| %>
-            <%= hidden_field_tag 'task[list_id]', list.id %>
-            <%= t.text_area :name, class: "form-control" %>
-            <%= t.submit "Add task", class: "btn btn-default add-task-btn" %>
-          <% end %>
-        </div>
+ <div class="row">
+   <div class="col-md-4" id="listname">
+     <% @lists.each do |list| %>
 
-        <ul>
-          <li><h3><%= list.name %></h3></li>
-        </ul>
-      <% end %>
-    </div>
-    <div class="col-md-8">
-      <% @lists.each do |list| %>
-        <h3><%= list.name %></h3>
-        <% list.tasks.each do |tasklists| %>
-          <ul>
-            <li><%= tasklists.name %></li>
-          </ul>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+
+       <ul>
+         <li><h3 class="clicky" data-lname="<%= list.name %>"><%= list.name %></h3></li>
+       </ul>
+     <% end %>
+   </div>
+   <div class="col-md-8">
+     <% @lists.each do |list| %>
+       <div class="info-<%= list.name %> infobox hidey">  <!-- NEW -->
+         <h3><%= list.name %></h3>
+         <div class="form-group">
+           <%= form_for Task.new do |t| %>
+             <%= hidden_field_tag 'task[list_id]', list.id %>
+             <%= t.text_area :name, class: "form-control" %>
+             <%= t.submit "Add task", class: "btn btn-default add-task-btn" %>
+           <% end %>
+         </div>
+         <ul>
+           <% list.tasks.each do |task| %>
+           <li><%= task.name %></li>
+
+
+           <% end %>
+         </ul>
+       </div>
+     <% end %>
+   </div>
+ </div>
 </div>

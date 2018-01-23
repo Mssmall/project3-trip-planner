@@ -11,7 +11,6 @@
   let map;
   let geocoder;
   let myLatLng;
-  let marker;
   let markers = <%== @current_user.locations.to_json %>;
 
   function initMap() {
@@ -22,20 +21,46 @@
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    for (let i = 0; i < markers.length; i++) {
-      const m = markers[i];
-      const latLng = new google.maps.LatLng(m.latitude, m.longitude);
+    markers.forEach(function (m, i) {
+      let latLng = new google.maps.LatLng(m.latitude, m.longitude);
       let marker = new google.maps.Marker({
         position: latLng,
         map: map
       });
       var infowindow = new google.maps.InfoWindow({
-        content: m.country
+        content: m.country + `<button id="delete-${m.id}" data-location-id="${m.id}">delete</button> <label for="visited-${m.id}">Visited?</label><input id="visited-${m.id}" data-location-id="${m.id}" type=checkbox ${m.visited ? 'checked' : ''}/>`,
       });
+      google.maps.event.addListener(infowindow, 'domready', function () {
+        const deleteMarker = function () {
+          const locationID = $(this).data('location-id');
+          $.ajax({
+            url: '/locations/' + locationID,
+            method: 'DELETE'
+          });
+          infowindow.close();
+          marker.setMap(null);
+        }
+        $('#delete-' + m.id).off('click', deleteMarker).on('click', deleteMarker);
+
+        const toggleVisited = function () {
+          const locationID = $(this).data('location-id');
+          $.ajax({
+            url: '/locations/' + locationID,
+            method: 'PUT',
+            data: {
+              visited: this.checked
+            }
+          });
+        }
+        $('#visited-' + m.id).off('click', toggleVisited).on('click', toggleVisited);
+      });
+
       marker.addListener('click', function() {
         infowindow.open(map, marker);
       });
-    }
+
+      markers[i] = marker;
+    })
 
     map.addListener('click', function(e) {
       placeMarkerAndPanTo(e.latLng, map);
@@ -53,13 +78,6 @@
       console.log( results ); // TODO: look at other results
       const country = results[ results.length - 1 ].formatted_address;
 
-      var infowindow = new google.maps.InfoWindow({
-        content: country + '<button>delete</button>'
-      });
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
-
       $.ajax({
           type: "POST",
           url: '/locations',
@@ -68,6 +86,39 @@
             longitude: latLng.lng(),
             country: country
           },
+      }).done(function (loc) {
+        var infowindow = new google.maps.InfoWindow({
+          content: country + `<button id="delete-${loc.id}" data-location-id="${loc.id}">delete</button> <label for="visited-${loc.id}">Visited?</label><input id="visited-${loc.id}" data-location-id="${loc.id}" type=checkbox />`,
+          // <input id="checkBox" type="checkbox" name="country" value="visited">
+          // <label for="checkBox">Visited?</label>
+        });
+        google.maps.event.addListener(infowindow, 'domready', function () {
+          const deleteMarker = function () {
+            const locationID = $(this).data('location-id');
+            $.ajax({
+              url: '/locations/' + locationID,
+              method: 'DELETE'
+            });
+            infowindow.close();
+            marker.setMap(null);
+          }
+          $('#delete-' + loc.id).off('click', deleteMarker).on('click', deleteMarker);
+
+          const toggleVisited = function () {
+            const locationID = $(this).data('location-id');
+            $.ajax({
+              url: '/locations/' + locationID,
+              method: 'PUT',
+              data: {
+                visited: this.checked
+              }
+            });
+          }
+          $('#visited-' + loc.id).off('click', toggleVisited).on('click', toggleVisited);
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
       });
     })
 

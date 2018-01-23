@@ -61,3 +61,16 @@
         line-height: 30px;
         padding-left: 10px;
       }
+
+    .form-group {
+      width: 300px;
+    }
+
+    .list-form {
+      width: 200px;
+    }
+
+  .col-md-8 {
+    top: -113px;
+    border-left: 1px solid black;
+  }

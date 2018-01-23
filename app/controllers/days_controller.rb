@@ -18,7 +18,7 @@ class DaysController < ApplicationController
   def create
     @itinerary = Itinerary.find(params[:day][:itinerary_id])
     @day = @itinerary.days.create(day_params)
-    if @task.save
+    if @day.save
       redirect_back fallback_location: lists_path
     else
       flash.now[:danger] = "error"
@@ -32,5 +32,10 @@ class DaysController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+  def day_params
+    params.require(:day).permit(:date, :destination, :entry, :itinerary_id)
   end
 end

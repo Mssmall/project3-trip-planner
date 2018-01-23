@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   def index
-    @lists = List.all
+    @lists = @current_user.lists
   end
 
   def new
@@ -12,12 +12,12 @@ class ListsController < ApplicationController
   end
 
   def create
+    params[:list][:user_id] = @current_user.id
     list = List.create list_params
     redirect_to lists_path
   end
 
   def edit
-
   end
 
   def update
