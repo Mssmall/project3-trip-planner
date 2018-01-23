@@ -5,7 +5,7 @@
  <%= form_for List.new do |l| %>
    <fieldset>
      <div class="form-group">
-       <%= l.label :name %>
+       <%= l.label :name_your_list %>
        <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
      </div>
   </div>
@@ -14,19 +14,20 @@
 
 <div class="container">
  <div class="row">
-   <div class="col-md-4" id="listname">
+   <div class="col-md-4">
      <% @lists.each do |list| %>
-
 
        <ul>
          <li><h3 class="clicky" data-lname="<%= list.name %>"><%= list.name %></h3></li>
        </ul>
      <% end %>
    </div>
-   <div class="col-md-8">
+
+   <div class="col-md-8" id="tasksec">
      <% @lists.each do |list| %>
        <div class="info-<%= list.name %> infobox hidey">  <!-- NEW -->
          <h3><%= list.name %></h3>
+
          <div class="form-group">
            <%= form_for Task.new do |t| %>
              <%= hidden_field_tag 'task[list_id]', list.id %>

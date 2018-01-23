@@ -1,11 +1,12 @@
+<h2>Where would you like to go next?</h2>
+
 <div id="mapcontainer">
-  <div id="floating-panel">
-      <input onclick="clearMarkers();" type=button value="Hide Markers">
-      <input onclick="showMarkers();" type=button value="Show All Markers">
-      <input onclick="deleteMarkers();" type=button value="Delete Markers">
-    </div>
   <div id="map"></div>
 </div>
+<div id="floating-panel">
+    <input onclick="clearMarkers();" type=button value="Hide Markers">
+    <input onclick="showMarkers();" type=button value="Show All Markers">
+  </div>
 <script>
 
   let map;
@@ -138,12 +139,6 @@
   // Shows any markers currently in the array.
   function showMarkers() {
     setMapOnAll(map);
-  }
-
-  // Deletes all markers in the array by removing references to them.
-  function deleteMarkers() {
-    clearMarkers();
-    markers = [];
   }
 
 </script>

@@ -1,32 +1,53 @@
 <h1>Your Itineraries</h1>
 
 <div class="itinerary-board">
+  <div class="list-form">
   <%= form_for Itinerary.new do |it| %>
     <fieldset>
       <div class="form-group">
         <%= it.label :itinerary_name %>
         <%= it.text_field :itinerary_name, :required => true, :placeholder => 'Europe 2018', :class => "form-control" %>
       </div>
+  </div>
     </fieldset>
   <% end %>
 
   <div class="container">
+   <div class="row">
+     <div class="col-md-2">
     <% @itineraries.each do |itinerary| %>
+    <ul>
+      <li><h3 class="clicky" data-lname="<%= itinerary.itinerary_name %>"><%= itinerary.itinerary_name %></h3></li>
+    </ul>
+  <% end %>
+  </div>
+
+  <div class="col-md-5" id="daysec">
+    <% @itineraries.each do |itinerary| %>
+      <div class="info-<%= itinerary.itinerary_name %> infobox hidey">  <!-- NEW -->
+        <h3><%= itinerary.itinerary_name %></h3>
+
       <div class="form-group">
         <%= form_for Day.new do |day| %>
         <%= hidden_field_tag 'day[itinerary_id]', itinerary.id %>
-        <%= day.text_area :date, :required => false, :placeholder => '03.09.18', class: "form-control" %>
+        <%= day.text_area :date, :required => true, :placeholder => '03.09.18', class: "form-control" %>
         <%= day.text_area :destination, :required => false, :placeholder => 'Tokyo', class: "form-control" %>
         <%= day.text_area :entry, :required => false, :placeholder => 'Arrive in Tokyo. Check in to hotel. Walk around city. Eat ramen.', class: "form-control" %>
         <%= day.submit "Add entry", class: "btn btn-default add-task-btn" %>
         <% end %>
       </div>
+      <% @itineraries.each do |it| %>
+        <% it.days.each do |day| %>
+        <h3><%= day.date %></h3>
+        <% end %>
+      <% end %>
+  </div>
 
-
-    <h3><%= itinerary.itinerary_name %></h3>
-    <% end %>
+    <!-- <h3><%= itinerary.itinerary_name %></h3> -->
+    <!-- <% end %> -->
 
   </div>
+  <div class="col-md-5" id="detailssec">
 
   <% @itineraries.each do |it| %>
     <h3><%= it.itinerary_name %></h3>
@@ -38,4 +59,6 @@
     </ul>
     <% end %>
   <% end %>
+</div>
+</div>
 </div>
