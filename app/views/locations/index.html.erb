@@ -29,8 +29,9 @@
         position: latLng,
         map: map
       });
+      //Info window for new markers
       var infowindow = new google.maps.InfoWindow({
-        content: '<h3>' + m.country + '</h3>' + `<p><button id="delete-${m.id}" data-location-id="${m.id}">Delete</button></p>
+        content: '<h5>' + m.country + '</h5>' + `<p><button id="delete-${m.id}" data-location-id="${m.id}">Delete marker</button></p>
         <label for="visited-${m.id}">Visited?</label><input id="visited-${m.id}" data-location-id="${m.id}" type=checkbox ${m.visited ? 'checked' : ''}/>`,
       });
 
@@ -83,6 +84,7 @@
       console.log( results ); // TODO: look at other results
       const country = results[ results.length - 1 ].formatted_address;
 
+      //info window for existing markers
       $.ajax({
           type: "POST",
           url: '/locations',
