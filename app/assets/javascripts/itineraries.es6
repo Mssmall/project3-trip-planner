@@ -5,9 +5,6 @@ $(document).ready(function(){
     $(`.info-${a.split(' ')[0]}`).removeClass('hidey').addClass('showy')
   })
 
-  // function() {
-  //   $(".scroll").niceScroll();
-  //
-  // }
+
 
 })
