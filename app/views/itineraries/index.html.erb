@@ -31,7 +31,7 @@
   <div class="col-md-9" id="daysec">
     <% @itineraries.each do |itinerary| %>
       <div class="info-<%= itinerary.itinerary_name %> infobox hidey">
-        <h3><%= itinerary.itinerary_name %></h3>
+        <h3><%= link_to itinerary.itinerary_name, itinerary %></h3>
         <h5>Fill in the details for each day</h5>
       <div class="li-form-group">
         <%= form_for Day.new do |day| %>

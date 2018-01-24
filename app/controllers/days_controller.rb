@@ -9,11 +9,11 @@ class DaysController < ApplicationController
   end
 
   def edit
-    @day = Day.find params[:id]
+
   end
 
   def show
-
+    @day = Day.find params[:id]
   end
 
   def create
@@ -32,7 +32,9 @@ class DaysController < ApplicationController
   end
 
   def destroy
-
+    day = Day.find params[:id]
+    day.destroy
+    redirect_to itineraries_path
   end
 
   private

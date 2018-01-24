@@ -1,4 +1,5 @@
 <h2>Where would you like to go next?</h2>
+<h5>Place the yellow person on the map to see a destination properly</h5>
 
 <div id="mapcontainer">
   <div id="map"></div>
@@ -32,6 +33,7 @@
         content: '<h3>' + m.country + '</h3>' + `<p><button id="delete-${m.id}" data-location-id="${m.id}">Delete</button></p>
         <label for="visited-${m.id}">Visited?</label><input id="visited-${m.id}" data-location-id="${m.id}" type=checkbox ${m.visited ? 'checked' : ''}/>`,
       });
+
       google.maps.event.addListener(infowindow, 'domready', function () {
         const deleteMarker = function () {
           const locationID = $(this).data('location-id');

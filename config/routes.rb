@@ -102,6 +102,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :days
 
+  get '/path/to/your/day/page', to: 'days#show', as: 'dayedit'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/login' => 'sessions#destroy'

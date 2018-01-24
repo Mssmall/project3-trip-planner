@@ -1,6 +1,6 @@
 Country.destroy_all
-c1 = Country.create(:name => 'England', :currency => 'Pound', :region => 'United Kingdom')
-c2 = Country.create(:name => 'France', :currency => 'Euro', :region => 'Europe')
+c1 = Country.create(:name => 'England', :currency => 'Pound', :region => 'United Kingdom', :known_for => 'The Royal Family, Football')
+c2 = Country.create(:name => 'France', :currency => 'Euro', :region => 'Europe', :known_for => 'Snails')
 c3 = Country.create(:name => 'USA', :currency => 'US Dollar', :region => 'United States')
 c4 = Country.create(:name => 'South Korea', :currency => 'Won', :region => 'Asia')
 

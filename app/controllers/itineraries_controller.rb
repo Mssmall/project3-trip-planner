@@ -8,6 +8,9 @@ class ItinerariesController < ApplicationController
     @itinerary = Itinerary.new
   end
 
+  def dayedit
+
+  end
   def show
     @itinerary = Itinerary.find params[:id]
   end
@@ -27,7 +30,9 @@ class ItinerariesController < ApplicationController
   end
 
   def destroy
-
+    itinerary = Itinerary.find params[:id]
+    itinerary.destroy
+    redirect_to itineraries_path
   end
 
   private

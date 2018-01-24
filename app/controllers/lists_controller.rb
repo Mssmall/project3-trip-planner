@@ -19,14 +19,18 @@ class ListsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path unless @current_user.id == params[:id].to_i
+    @list = List.find params[:id]
   end
 
   def update
-
+    
   end
 
   def destroy
-
+    list = List.find params[:id]
+    list.destroy
+    redirect_to lists_path
   end
 
   private

@@ -1,2 +1,5 @@
-<h1>Days#show</h1>
-<p>Find me in app/views/days/show.html.erb</p>
+<h2>Delete day?</h2>
+
+<% @days.each do |day| %>
+  <%= link_to 'Delete', @day, :method => 'delete', :data => { :confirm => 'You sure?'} %>
+<% end %>
