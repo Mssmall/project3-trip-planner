@@ -77,3 +77,12 @@
   top: -113px;
   border-left: 1px solid black;
 }
+
+.col-md-9 {
+  top: -19px;
+  border-left: 1px solid black;
+}
+
+.gm-style .gm-style-iw {
+  height: auto;
+}

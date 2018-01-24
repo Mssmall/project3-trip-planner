@@ -29,7 +29,8 @@
         map: map
       });
       var infowindow = new google.maps.InfoWindow({
-        content: m.country + `<button id="delete-${m.id}" data-location-id="${m.id}">delete</button> <label for="visited-${m.id}">Visited?</label><input id="visited-${m.id}" data-location-id="${m.id}" type=checkbox ${m.visited ? 'checked' : ''}/>`,
+        content: '<h3>' + m.country + '</h3>' + `<p><button id="delete-${m.id}" data-location-id="${m.id}">Delete</button></p>
+        <label for="visited-${m.id}">Visited?</label><input id="visited-${m.id}" data-location-id="${m.id}" type=checkbox ${m.visited ? 'checked' : ''}/>`,
       });
       google.maps.event.addListener(infowindow, 'domready', function () {
         const deleteMarker = function () {
@@ -41,6 +42,7 @@
           infowindow.close();
           marker.setMap(null);
         }
+
         $('#delete-' + m.id).off('click', deleteMarker).on('click', deleteMarker);
 
         const toggleVisited = function () {
@@ -89,10 +91,9 @@
           },
       }).done(function (loc) {
         var infowindow = new google.maps.InfoWindow({
-          content: country + `<button id="delete-${loc.id}" data-location-id="${loc.id}">delete</button> <label for="visited-${loc.id}">Visited?</label><input id="visited-${loc.id}" data-location-id="${loc.id}" type=checkbox />`,
-          // <input id="checkBox" type="checkbox" name="country" value="visited">
-          // <label for="checkBox">Visited?</label>
+          content: '<h3>'+country+'</h3>' + `<p><button id="delete-${loc.id}" data-location-id="${loc.id}">Delete</button></p>` + `<label for="visited-${loc.id}">Visited?</label><input id="visited-${loc.id}" data-location-id="${loc.id}" type=checkbox />`
         });
+
         google.maps.event.addListener(infowindow, 'domready', function () {
           const deleteMarker = function () {
             const locationID = $(this).data('location-id');

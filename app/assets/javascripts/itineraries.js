@@ -1,14 +1,13 @@
 $(document).ready(function(){
   $(".clicky").on('click', function() {
-    $('.showy').removeClass('showy')
+    $('.showy').removeClass('showy').addClass('hidey');
     let a = $(this).attr("data-lname")
-    $(`.info-${a.split(' ')[0]}`).addClass('showy')
+    $(`.info-${a.split(' ')[0]}`).removeClass('hidey').addClass('showy')
   })
 
-  $(".clicky2").on('click', function() {
-    $('.showy2').removeClass('showy2')
-    let a = $(this).attr("data-lname2")
-    $(`.dinfo-${a.split(' ')}`).addClass('showy2')
-  })
+  // function() {
+  //   $(".scroll").niceScroll();
+  //
+  // }
 
 })

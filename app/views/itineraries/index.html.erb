@@ -9,25 +9,29 @@
         <%= it.label :name_your_itinerary %>
         <%= it.text_field :itinerary_name, :required => true, :placeholder => 'Europe 2018', :class => "form-control" %>
       </div>
-  </div>
+
     </fieldset>
   <% end %>
+</div>
 
   <div class="container">
    <div class="row">
-     <div class="col-md-2">
+     <div class="col-md-3">
+       <ul>
     <% @itineraries.each do |itinerary| %>
-    <ul>
+
       <li><h3 class="clicky" data-lname="<%= itinerary.itinerary_name %>"><%= itinerary.itinerary_name %></h3></li>
-    </ul>
+
     <% end %>
+    </ul>
   </div>
 
 <!-- SECOND SECTION -->
-  <div class="col-md-5" id="daysec">
+<div style="width:400px; height:400px; overflow: auto;" >
+  <div class="col-md-9" id="daysec">
     <% @itineraries.each do |itinerary| %>
       <div class="info-<%= itinerary.itinerary_name %> infobox hidey">
-        <!-- <h3><%= itinerary.itinerary_name %></h3> -->
+        <h3>Fill in the details for each day</h3>
       <div class="li-form-group">
         <%= form_for Day.new do |day| %>
           <%= hidden_field_tag 'day[itinerary_id]', itinerary.id %>
@@ -36,37 +40,27 @@
           <%= day.text_area :entry, :required => false, :placeholder => 'Arrive in Tokyo. Check in to hotel. Walk around city. Eat ramen.', class: "form-control" %>
           <%= day.submit "Add entry", class: "btn btn-default add-task-btn" %>
         <% end %>
+      </div>
 
-        <% @itineraries.each do |it| %>
-          <% it.days.each do |day| %>
-            <h3 class="clicky2" data-lname2="<%= day.date %>"><%= day.date %></h3>
-          <% end %>
-        <% end %>
-        
+      <% itinerary.days.each do |it| %>
+        <ul>
+          <h3><%= it.date %></h3>
+          <li><%= it.destination %></li>
+          <li><%= it.entry %></li>
+        </ul>
+      <% end %>
+    </div>
     <% end %>
+
+
+
+
       </div>
-      </div>
-
-
-
-  </div>
     </div>
   </div>
 
-  <div class="col-md-4" id="detailssec">
 
 
-
-  <% @itineraries.each do |it| %>
-      <div class="dinfo-<%= it.itinerary_name %> infobox hidey2">
-    <!-- <h3><%= it.itinerary_name %></h3> -->
-    <% it.days.each do |itdays| %>
-    <ul>
-      <li><%= itdays.date %></li>
-      <li><%= itdays.destination %></li>
-      <li><%= itdays.entry %></li>
-    </ul>
-    <% end %>
+      </div>
     </div>
-  <% end %>
-</div>
+  </div>
