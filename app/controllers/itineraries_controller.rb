@@ -1,4 +1,5 @@
 class ItinerariesController < ApplicationController
+  before_action :check_if_logged_in
   def index
     @itineraries = @current_user.itineraries
   end

@@ -85,11 +85,11 @@
 #          login GET    /login(.:format)                sessions#new
 #                POST   /login(.:format)                sessions#create
 #                DELETE /login(.:format)                sessions#destroy
-# 
+#
 
 Rails.application.routes.draw do
 
-  root :to => 'pages#home'
+  root :to => 'locations#index'
 
   resources :budgets
   resources :cities

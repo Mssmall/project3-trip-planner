@@ -32,7 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
-
+gem 'sprockets-es6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

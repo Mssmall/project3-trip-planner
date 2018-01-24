@@ -1,3 +1,19 @@
 // Place all the styles related to the Countries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.countrynames {
+  font-size: 18px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.countryhead {
+  font-size: 180px;
+}
+
+.catheads {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: navy;
+}

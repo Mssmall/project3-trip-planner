@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  before_action :check_if_logged_in
   def index
     @lists = @current_user.lists
   end

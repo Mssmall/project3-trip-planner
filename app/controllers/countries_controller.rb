@@ -1,4 +1,5 @@
 class CountriesController < ApplicationController
+  before_action :check_if_logged_in
   def index
     @countries = Country.all
   end

@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  before_action :check_if_logged_in
   def index
     @notes = Note.all
   end
@@ -8,7 +9,7 @@ class NotesController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def edit

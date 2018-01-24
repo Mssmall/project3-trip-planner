@@ -6,19 +6,32 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Righteous" rel="stylesheet">
   </head>
 
   <body>
+
+    <div id="nav_bar">
+      <nav class="nav">
+        <% if @current_user.present? %>
+          <li><%= link_to 'Home', root_path %></li>
+          <%= link_to "My Profile", user_path(@current_user) %>
+          <li><%= link_to 'Lists', lists_path%></li>
+          <li><%= link_to 'Itineraries', itineraries_path %></li>
+          <li><%= link_to 'Countries', countries_path %></li>
+          <li><%= link_to 'Cities', cities_path %></li>
+          <!-- <div class="navright"> -->
+          <%= link_to "Sign Out #{@current_user.email}", login_path, :method => 'delete' %>
+          <!-- </div> -->
+        <% else %>
+          <%= link_to 'Sign Up', new_user_path %>
+          <%= link_to 'Sign In', login_path %>
+        <% end %>
+
+      </nav>
+    </div>
   <!-- <div id="topnav"> -->
-    <% if @current_user.present? %>
-      <%= link_to "My Profile", user_path(@current_user) %>
-      <div class="navright">
-      <%= link_to "Sign Out #{@current_user.email}", login_path, :method => 'delete' %>
-      </div>
-    <% else %>
-      <%= link_to 'Sign Up', new_user_path %>
-      <%= link_to 'Sign In', login_path %>
-    <% end %>
+
   <!-- </div> -->
     <div class="pagecontainer"><%= yield %></div>
   </body>

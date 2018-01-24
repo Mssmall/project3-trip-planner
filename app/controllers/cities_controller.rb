@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+  before_action :check_if_logged_in
   def index
     @cities = City.all
   end

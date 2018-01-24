@@ -1,10 +1,5 @@
-<h1><%= @city.name %></h1>
+<h1 class="cityhead"><%= @city.name %></h1>
 
-  <p> Country: <%= @city.country.name%></p>
-  <p> Language: <%= @city.language %> </p>
-  <p> Attractions: <%= @city.attraction %> </p>
-
-
-<%= @capital_city %>
-<%= @region %>
-<%= @language %>
+  <p><span class="catheads"> Country </span> <%= @city.country.name%></p>
+  <p><span class="catheads"> Language </span> <%= @city.language %> </p>
+  <p> <span class="catheads">Attractions</span> <%= @city.attraction %> </p>
