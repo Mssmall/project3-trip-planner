@@ -1,4 +1,4 @@
-<h1>Your Itineraries</h1>
+<h1>YOUR ITINERARIES</h1>
 
 <!-- FIRST SECTION -->
 <div class="itinerary-board">
@@ -6,7 +6,7 @@
   <%= form_for Itinerary.new do |it| %>
     <fieldset>
       <div class="it-form-group">
-        <%= it.label :name_your_itinerary %>
+        <%= it.label :create %>
         <%= it.text_field :itinerary_name, :required => true, :placeholder => 'Europe 2018', :class => "form-control" %>
       </div>
 
@@ -20,7 +20,7 @@
        <ul>
     <% @itineraries.each do |itinerary| %>
 
-      <li><h3 class="clicky" data-lname="<%= itinerary.itinerary_name %>"><%= itinerary.itinerary_name %></h3></li>
+      <li class='go'><h3 class="clicky" data-lname="<%= itinerary.itinerary_name %>"><%= itinerary.itinerary_name %></h3></li>
 
     <% end %>
     </ul>
@@ -31,13 +31,14 @@
   <div class="col-md-9" id="daysec">
     <% @itineraries.each do |itinerary| %>
       <div class="info-<%= itinerary.itinerary_name %> infobox hidey">
-        <h3>Fill in the details for each day</h3>
+        <h3><%= itinerary.itinerary_name %></h3>
+        <h5>Fill in the details for each day</h5>
       <div class="li-form-group">
         <%= form_for Day.new do |day| %>
           <%= hidden_field_tag 'day[itinerary_id]', itinerary.id %>
           <%= day.text_area :date, :required => true, :placeholder => '03.09.18', class: "form-control" %>
           <%= day.text_area :destination, :required => false, :placeholder => 'Tokyo', class: "form-control" %>
-          <%= day.text_area :entry, :required => false, :placeholder => 'Arrive in Tokyo. Check in to hotel. Walk around city. Eat ramen.', class: "form-control" %>
+          <%= day.text_area :entry, :required => false, :placeholder => 'Arrive in Tokyo. Check in to hotel. Walk around city. Eat ramen.', class: "form-control", id: "desc" %>
           <%= day.submit "Add entry", class: "btn btn-default add-task-btn" %>
         <% end %>
       </div>
@@ -45,8 +46,8 @@
       <% itinerary.days.each do |it| %>
         <ul>
           <h3><%= it.date %></h3>
-          <li><%= it.destination %></li>
-          <li><%= it.entry %></li>
+          <li class="go"><span class="catheads"> Destination </span><%= it.destination %></li>
+          <li class="go"><span class="catheads"> Plan </span><%= it.entry %></li>
         </ul>
       <% end %>
     </div>

@@ -59,28 +59,6 @@ body {
   padding-left: 10px;
 }
 
-.li-form-group {
-  width: 300px;
-}
-
-.it-form-group {
-  width: 200px;
-}
-
-.list-form {
-  width: 200px;
-}
-
-.col-md-8 {
-  top: -113px;
-  border-left: 1px solid black;
-}
-
-.col-md-9 {
-  top: -19px;
-  border-left: 1px solid black;
-}
-
 .gm-style .gm-style-iw {
   height: auto;
 }

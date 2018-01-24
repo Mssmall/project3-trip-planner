@@ -1,11 +1,11 @@
-<h1>Lists</h1>
+<h1>YOUR LISTS</h1>
 
 <div class="list-board">
   <div class="list-form">
  <%= form_for List.new do |l| %>
    <fieldset>
      <div class="li-form-group">
-       <%= l.label :name_your_list %>
+       <%= l.label :create %>
        <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
      </div>
   </div>
@@ -18,11 +18,12 @@
      <% @lists.each do |list| %>
 
        <ul>
-         <li><h3 class="clicky" data-lname="<%= list.name %>"><%= list.name %></h3></li>
+         <li class="go"><h3 class="clicky" data-lname="<%= list.name %>"><%= list.name %></h3></li>
        </ul>
      <% end %>
    </div>
 
+<div style="width:400px; height:400px; overflow: auto;" >
    <div class="col-md-8" id="tasksec">
      <% @lists.each do |list| %>
        <div class="info-<%= list.name %> infobox hidey">  <!-- NEW -->
@@ -33,17 +34,18 @@
              <%= hidden_field_tag 'task[list_id]', list.id %>
              <%= t.text_area :name, class: "form-control" %>
              <%= t.submit "Add task", class: "btn btn-default add-task-btn" %>
+
            <% end %>
          </div>
          <ul>
+            <br>
            <% list.tasks.each do |task| %>
-           <li><%= task.name %></li>
-
-
+             <li><%= task.name %></li>
            <% end %>
          </ul>
        </div>
      <% end %>
+   </div>
    </div>
  </div>
 </div>

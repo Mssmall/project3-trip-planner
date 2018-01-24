@@ -2,6 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+h1 {
+  font-size: 80px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.li-form-group {
+  width: 300px;
+}
+
+.list-form {
+  width: 200px;
+}
+
+.col-md-8 {
+  top: -17px;
+  border-left: 7px solid navy;
+}
 
 .add-task-btn {
   margin-top: 10px;
