@@ -3,6 +3,6 @@
 <p><span class="catheads"> Email </span> <%= @user.email %></p>
 
 <div class="controls">
-    <%= link_to 'Edit user', edit_user_path(@user) %>
-    <%= button_to 'Delete user', @user, :method => 'delete', :data => { :confirm => 'You sure?'} %>
+    <p><%= link_to 'Edit user', edit_user_path(@user) %></p>
+    <p><%= button_to 'Delete user', @user, :method => 'delete', :data => { :confirm => 'You sure?'} %></p>
   </div>
