@@ -3,7 +3,5 @@ $(document).ready(function(){
     $('.showy').removeClass('showy').addClass('hidey');
     let a = $(this).attr("data-lname")
     $(`.info-${a.split(' ')[0]}`).removeClass('hidey').addClass('showy')
-  })
-
-
+  });
 })

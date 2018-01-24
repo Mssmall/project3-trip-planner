@@ -1,6 +1,51 @@
+<h1>YOUR NOTES</h1>
+
 <div class="note-board">
+  <div class="note-form">
+    <%= form_for Note.new do |l| %>
+      <fieldset>
+        <div class="note-form-group">
+          <%= l.label :create %>
+          <%= l.text_field :heading, :required => true, :placeholder => 'Name e.g. Transport notes', :class => "form-control" %>
+        </div>
+  </div>
+      </fieldset>
+    <% end %>
 
-  <%= text_area "note", "body", "cols" => 20, "rows" => 40 %>
+    <div class="container">
+     <div class="row">
+       <div class="col-md-3">
+         <% @notes.each do |note| %>
+           <ul>
+             <li class="go"><h3 class="clicky" data-lname="<%= note.heading %>"><%= note.heading %></h3></li>
+           </ul>
+         <% end %>
+       </div>
 
+  <div style="width:350px; height:400px; overflow: auto;" >
+    <div class="col-md-9" id="tasksec">
+    <% @notes.each do |note| %>
+    <div class="info-<%= note.heading %> infobox hidey">
+      <h3><%= link_to note.heading, note %></h3>
 
+        <div class="li-form-group">
+          <%= form_for Note.new do |t| %>
+            <!-- <%= hidden_field_tag 'task[note_id]', note.id %> -->
+            <%= t.text_area :date, :required => true, :placeholder => '03.04.18', :class => "form-control" %>
+            <%= t.text_area :note, :required => true, :placeholder => 'Book trains 3 months before date', :class => "form-control", id: "notearea" %>
+            <%= t.submit "Add note", class: "btn btn-default add-task-btn" %>
+          <% end %>
+        </div>
+          <ul>
+             <br>
+            <% @notes.each do |n| %>
+              <li class="go"><span class="catheads"> Date </span><%= n.date %></li>
+              <li class="go"><span class="catheads"> Note </span><%= n.note %></li>
+            <% end %>
+          </ul>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
 </div>

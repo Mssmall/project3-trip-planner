@@ -2,12 +2,12 @@
 
 <div class="list-board">
   <div class="list-form">
- <%= form_for List.new do |l| %>
-   <fieldset>
-     <div class="li-form-group">
-       <%= l.label :create %>
-       <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
-     </div>
+     <%= form_for List.new do |l| %>
+       <fieldset>
+         <div class="li-form-group">
+           <%= l.label :create %>
+           <%= l.text_field :name, :required => false, :placeholder => 'Name e.g. To Do', :class => "form-control" %>
+         </div>
   </div>
    </fieldset>
  <% end %>
@@ -16,13 +16,10 @@
  <div class="row">
    <div class="col-md-4">
      <% @lists.each do |list| %>
-
        <ul>
          <li class="go"><h3 class="clicky" data-lname="<%= list.name %>"><%= list.name %></h3></li>
        </ul>
      <% end %>
-
-
    </div>
 
 <div style="width:400px; height:400px; overflow: auto;" >
