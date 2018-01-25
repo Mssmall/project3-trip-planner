@@ -25,11 +25,13 @@
   <div style="width:350px; height:400px; overflow: auto;" >
     <div class="col-md-9" id="tasksec">
     <% @notes.each do |note| %>
-    <div class="info-<%= note.heading %> infobox hidey">
+    <% infoClass = note.heading.gsub(' ', '-') %>
+    <div class="info-<%= infoClass %> infobox hidey">
       <h3><%= link_to note.heading, note %></h3>
 
         <div class="li-form-group">
           <%= form_for Note.new do |t| %>
+
             <!-- <%= hidden_field_tag 'task[note_id]', note.id %> -->
             <%= t.text_area :date, :required => true, :placeholder => '03.04.18', :class => "form-control" %>
             <%= t.text_area :note, :required => true, :placeholder => 'Book trains 3 months before date', :class => "form-control", id: "notearea" %>
@@ -38,10 +40,8 @@
         </div>
           <ul>
              <br>
-            <% @notes.each do |n| %>
-              <li class="go"><span class="catheads"> Date </span><%= n.date %></li>
-              <li class="go"><span class="catheads"> Note </span><%= n.note %></li>
-            <% end %>
+              <li class="go"><span class="catheads"> Date </span><%= note.date %></li>
+              <li class="go"><span class="catheads"> Note </span><%= note.note %></li>
           </ul>
       </div>
     <% end %>

@@ -22,10 +22,11 @@
      <% end %>
    </div>
 
-<div style="width:400px; height:400px; overflow: auto;" >
+<div style="width:400px; height:400px; overflow: auto;">
    <div class="col-md-8" id="tasksec">
      <% @lists.each do |list| %>
-       <div class="info-<%= list.name %> infobox hidey">  <!-- NEW -->
+     <% infoClass = list.name.gsub(' ', '-') %>
+       <div class="info-<%= infoClass %> infobox hidey">  <!-- NEW -->
          <h3><%= link_to list.name, list %></h3>
 
          <div class="li-form-group">
