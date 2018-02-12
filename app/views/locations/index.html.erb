@@ -34,7 +34,7 @@
         content: '<h5>' + m.country + '</h5>' + `<p><button id="delete-${m.id}" data-location-id="${m.id}">Delete marker</button></p>
         <label for="visited-${m.id}">Visited?</label><input id="visited-${m.id}" data-location-id="${m.id}" type=checkbox ${m.visited ? 'checked' : ''}/>`,
       });
-
+      //Delete marker function
       google.maps.event.addListener(infowindow, 'domready', function () {
         const deleteMarker = function () {
           const locationID = $(this).data('location-id');

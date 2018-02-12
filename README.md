@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TRIPPY
 
-Things you may want to cover:
+Trippy is designed to ease the stress of planning a trip by providing the tools you need all in the one place.
 
-* Ruby version
+BUILT WITH
+Rails, Ruby, PostgreSQL, Google Map API
 
-* System dependencies
+TEST LOGIN DETAILS
+Email: cfc@live.ft
+Password: chicken
 
-* Configuration
+Improvements and known bugs
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+FUTURE FEATURES
